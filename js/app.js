@@ -42,7 +42,7 @@ function pageBank() {
 }
 function subjectCard(s) {
   const d = docsOf(s.id).filter(avail), m = d.filter((x) => !isSoal(x)).length, l = d.filter(isSoal).length;
-  return `<a class="card subj" href="#/bank-soal/${encodeURIComponent(s.id)}"><div class="subj-t"><h3>${esc(s.name)}</h3><span class="chev" aria-hidden="true">›</span></div><p class="cnt">${m || l ? `<span>📄 ${m} materi</span><span>📝 ${l} soal</span>` : badge('Belum ada file', 'amber')}</p></a>`;
+  return `<a class="card subj" href="#/bank-soal/${encodeURIComponent(s.id)}"><div class="subj-t"><h3>${esc(s.name)}</h3><span class="chev" aria-hidden="true">›</span></div><p class="cnt">${m || l ? `<span>📄 ${m} materi</span><span>📝 ${l} soal</span>` : badge('Belum tersedia', 'amber')}</p></a>`;
 }
 function listBank() {
   const { q, sem, type } = S.bank;
@@ -104,7 +104,7 @@ function listLearn() {
 /* ---------- SOFTWARE ---------- */
 function pageSoftware() {
   return phead('Software & Tools Mahasiswa', 'Semua tautan unduhan mengarah ke situs resmi pengembang.')
-    + `<div class="wrap section"><div class="toolbar" style="grid-template-columns:2fr 1fr">${searchBox('sw.q', 'Cari software')}${select('sw.cat', 'Semua kategori', softwareCategories)}</div><div id="list" class="grid g3" style="margin-top:20px" aria-live="polite"></div></div>`;
+    + `<div class="wrap section"><div class="toolbar two">${searchBox('sw.q', 'Cari software')}${select('sw.cat', 'Semua kategori', softwareCategories)}</div><div id="list" class="grid g3" style="margin-top:20px" aria-live="polite"></div></div>`;
 }
 function listSoftware() {
   const { q, cat } = S.sw;
@@ -126,7 +126,7 @@ function pageCareer() {
   const done = getDone();
   const total = checklist.reduce((n, p) => n + p.items.length, 0), count = Object.values(done).filter(Boolean).length;
   return phead('Karier, Bootcamp & Magang', 'Persiapan karier sejak dini. Info pendaftaran selalu perlu dicek di situs resmi.')
-    + section('Informasi bootcamp', "Biaya dan status berubah-ubah. Yang bertanda 'Perlu verifikasi' belum dipastikan aktif.", `<div style="max-width:300px;margin-bottom:14px">${select('bc.cat', 'Semua kategori', bootcampCategories)}</div><div id="list" class="grid g3" aria-live="polite"></div>`)
+    + section('Informasi bootcamp', "Biaya dan status berubah-ubah. Yang bertanda 'Perlu verifikasi' belum dipastikan aktif.", `<div class="sel-one" style="margin-bottom:14px">${select('bc.cat', 'Semua kategori', bootcampCategories)}</div><div id="list" class="grid g3" aria-live="polite"></div>`)
     + section('Portal magang & lowongan', '', `<div class="grid g3">${portals.map((p) => `<div class="card"><div>${badge(p.type)}${p.status ? badge(p.status, 'amber') : ''}</div><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p><p><b>Umumnya:</b> ${esc(p.req)}</p><div class="push">${btn(p.url, 'Cari Peluang', '', true)}</div></div>`).join('')}</div><h3 style="margin-top:28px;color:var(--navy)">Pengumuman pendaftaran</h3><div class="grid">${announcements.length ? announcements.map((a) => `<div class="card"><h3>${esc(a.title)}</h3><p>${esc(a.openDate)} s.d. ${esc(a.closeDate)}</p><div>${btn(a.source, 'Sumber resmi', 'outline', true)}</div></div>`).join('') : empty('Belum ada pengumuman terverifikasi. Cek portal resmi di atas.')}</div>`)
     + section('Timeline & checklist persiapan magang', 'Ini panduan umum, bukan jadwal resmi semua program.', `<p id="prog-text" aria-live="polite">Selesai ${count} dari ${total} langkah</p><div class="progress"><div id="prog" style="width:${(count / total) * 100}%"></div></div><div class="grid g2">${checklist.map((p, pi) => `<div class="card"><h3>${esc(p.phase)}</h3>${p.items.map((it, ii) => { const id = `${pi}-${ii}`; return `<label class="check"><input type="checkbox" data-ck="${id}" ${done[id] ? 'checked' : ''}><span>${esc(it)}</span></label>`; }).join('')}</div>`).join('')}</div><div class="row"><button class="btn outline" id="resetCk">Reset checklist</button></div>`)
     + section('Persiapan interview & karier', 'Contoh bersifat edukatif dan perlu disesuaikan dengan pengalamanmu. Tidak ada jaminan lolos seleksi.', guides.map((g) => `<details><summary>${esc(g.title)}</summary>${g.body.map((t) => `<p>${esc(t)}</p>`).join('')}</details>`).join('') + `<div class="row">${btn('#/belajar-gratis', 'Belajar keterampilan', 'outline')}</div>`);
@@ -183,3 +183,4 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#modal'
 $('#menuBtn').addEventListener('click', () => { const o = $('#nav').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded', o); });
 window.addEventListener('hashchange', render);
 renderFooter(); render();
+
