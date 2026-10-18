@@ -77,8 +77,7 @@ input::placeholder{font-size:.9rem;color:#64748B}
 /* ===== BARU: tampilan Bank Soal per mata kuliah (tambahkan di paling bawah file) ===== */
 .section h2.semh{font-size:1.5rem;color:var(--navy);margin:38px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .section h2.semh:first-child{margin-top:0}
-.card.subj{padding:12px 14px;gap:4px;text-decoration:none}
-.card.subj:hover{border-color:#94A3B8;transform:translateY(-2px)}
+.card.subj{padding:14px 16px;gap:4px;text-decoration:none}
 .subj-t{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .subj-t h3{margin:0;font-size:.98rem}.chev{color:var(--blue);font-size:1.3rem;line-height:1}
 .cnt{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0!important;font-size:.82rem!important}
