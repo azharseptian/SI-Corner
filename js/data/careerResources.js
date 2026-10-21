@@ -9,7 +9,6 @@ const bootcamps = [
   { org: 'AWS Skill Builder', program: 'Learning plan Cloud', category: 'Cloud Computing', focus: 'AWS Cloud', costType: 'Freemium', status: 'Selalu tersedia', url: 'https://skillbuilder.aws' },
 ]
 const portals = [
-  { name: 'Kampus Merdeka / program resmi Kemdikbudristek', desc: 'Portal program magang dan studi dari kementerian. Status program terkini harus dicek langsung.', type: 'Program resmi', req: 'Sesuai ketentuan tiap program', status: 'Perlu verifikasi', url: 'https://kampusmerdeka.kemdikbud.go.id' },
   { name: 'LinkedIn Jobs', desc: 'Lowongan magang dan kerja, plus jejaring profesional.', type: 'Magang & kerja', req: 'Profil LinkedIn, CV', url: 'https://www.linkedin.com/jobs/' },
   { name: 'Jobstreet', desc: 'Portal lowongan kerja di Indonesia.', type: 'Magang & kerja', req: 'CV, akun', url: 'https://www.jobstreet.co.id' },
   { name: 'Glints', desc: 'Lowongan kerja dan magang untuk talenta muda.', type: 'Magang & kerja', req: 'CV, akun', url: 'https://glints.com/id' },
